@@ -8,22 +8,27 @@ public class MapGenerator : MonoBehaviour {
     List<GameObject> objects = new List<GameObject>();
 
     public GameObject debugFullObject;
+    public GameObject debugEmptyObject;
+
+    void Start()
+    {
+        Regenerate();
+    }
 
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.G))
         {
-            ClearAll();
-
-            for(int x=-1; x<=1; x++)
-            {
-                for(int y=-1; y<=1; y++)
-                {
-                    map.Add(new Coord(x, y), new Tile(TileType.Empty));
-                }
-            }
-            Generate(new Coord(-10, -10), new Coord(10, 10));
+            Regenerate();
         }
+    }
+
+    void Regenerate()
+    {
+        ClearAll();
+
+        // GenerateBase();
+        Generate(new Coord(-10, -10), new Coord(10, 10));
     }
 
     void ClearAll()
@@ -36,6 +41,17 @@ public class MapGenerator : MonoBehaviour {
         }
 
         objects.Clear();
+    }
+
+    void GenerateBase()
+    {
+        for (int x = -1; x <= 1; x++)
+        {
+            for (int y = -1; y <= 1; y++)
+            {
+                map.Add(new Coord(x, y), new Tile(TileType.Empty));
+            }
+        }
     }
 
     void Generate(Coord min, Coord max)
@@ -60,10 +76,8 @@ public class MapGenerator : MonoBehaviour {
         var tile = new Tile(empty ? TileType.Empty : TileType.Full);
         map.Add(coord, tile);
 
-        if(tile.type == TileType.Full)
-        {
-            objects.Add(GameObject.Instantiate(debugFullObject, new Vector3(coord.x, coord.y, 0), Quaternion.identity));
-        }
+        var prefab = tile.type == TileType.Full ? debugFullObject : debugEmptyObject;
+        objects.Add(GameObject.Instantiate(prefab, coord.position, Quaternion.identity));
     }
 	
 }

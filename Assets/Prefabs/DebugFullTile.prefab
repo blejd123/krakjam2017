@@ -20,8 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4892985973302762}
   - component: {fileID: 212348601451069730}
+  - component: {fileID: 60563477315655780}
   m_Layer: 0
-  m_Name: DebugFullPrefab
+  m_Name: DebugFullTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,6 +41,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &60563477315655780
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1362256115765384}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  m_Points:
+    m_Paths:
+    - - {x: -0.28125, y: 0.5}
+      - {x: -2.2578125, y: -0.484375}
+      - {x: -2.2578125, y: -0.5}
+      - {x: 0.28125, y: -0.5}
+      - {x: 2.2578125, y: 0.484375}
+      - {x: 2.2578125, y: 0.5}
 --- !u!212 &212348601451069730
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -71,7 +92,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 84c455bb1fb3f054cb721787b0bbec29, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 54a07436ef0b34e44bc8356ef71b6d75, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

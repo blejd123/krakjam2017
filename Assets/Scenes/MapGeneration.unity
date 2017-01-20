@@ -120,6 +120,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugFullObject: {fileID: 1362256115765384, guid: 359c4c54d76a29e41864f4702c84379d,
     type: 2}
+  debugEmptyObject: {fileID: 1362256115765384, guid: dae89e74e4a6d434fac0541e76227dde,
+    type: 2}
 --- !u!4 &404731041
 Transform:
   m_ObjectHideFlags: 0
