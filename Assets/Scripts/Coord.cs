@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-class Coord: IEqualityComparer<Coord>
+struct Coord: IEqualityComparer<Coord>
 {
     public int x;
     public int y;
+
+    const float yDiff = (578.0f - 322.0f) / 128.0f;
+    const float width = 578.0f / 128.0f / 2.0f;
 
     public Coord(int x, int y)
     {
@@ -26,9 +29,12 @@ class Coord: IEqualityComparer<Coord>
     {
         get
         {
-            const float yDiff = (578.0f - 322.0f)/ 128.0f;
-            const float width = 578.0f / 128.0f / 2.0f;
             return new Vector3(x * width + y * yDiff, y, 0);
         }
+    }
+
+    public static Coord PositionToCoord(Vector3 position)
+    {
+        return new Coord((int)((position.x - position.y*yDiff)/width), (int)position.y);
     }
 }

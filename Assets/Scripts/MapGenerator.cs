@@ -7,6 +7,9 @@ public class MapGenerator : MonoBehaviour {
     Dictionary<Coord, Tile> map = new Dictionary<Coord, Tile>();
     List<GameObject> objects = new List<GameObject>();
 
+    public int VisibleTilesX;
+    public int VisibleTilesY;
+
     public GameObject debugFullObject;
     public GameObject debugEmptyObject;
 
@@ -21,6 +24,12 @@ public class MapGenerator : MonoBehaviour {
         {
             Regenerate();
         }
+
+        var cameraPos = FollowingCamera.Instance.transform.position;
+        var center = Coord.PositionToCoord(cameraPos);
+
+        Generate(new Coord(center.x - VisibleTilesX / 2, center.y - VisibleTilesY / 2),
+            new Coord(center.x + VisibleTilesX / 2, center.y + VisibleTilesY / 2));
     }
 
     void Regenerate()

@@ -118,6 +118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d38bbada6b0b9a40a9dfa2c004b5ab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  VisibleTilesX: 40
+  VisibleTilesY: 25
   debugFullObject: {fileID: 1362256115765384, guid: 359c4c54d76a29e41864f4702c84379d,
     type: 2}
   debugEmptyObject: {fileID: 1362256115765384, guid: dae89e74e4a6d434fac0541e76227dde,
@@ -189,6 +191,7 @@ GameObject:
   - component: {fileID: 1330739585}
   - component: {fileID: 1330739584}
   - component: {fileID: 1330739583}
+  - component: {fileID: 1330739588}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -237,7 +240,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -264,3 +267,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1330739588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1330739582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 871bdcf5cfe52ed43984cba52cd5b64d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 0.1

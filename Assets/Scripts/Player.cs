@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+    public static Player Instance;
+
     public float Speed;
 
-    Rigidbody2D rigidbody2D;
+    Rigidbody2D rigidBody2D;
 
     void Awake()
     {
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        Instance = this;
+        rigidBody2D = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -33,7 +36,7 @@ public class Player : MonoBehaviour {
 
         direction.Normalize();
 
-        rigidbody2D.velocity = direction * Speed;
+        rigidBody2D.velocity = direction * Speed;
     }
 
 }
