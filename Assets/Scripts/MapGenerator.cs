@@ -27,7 +27,7 @@ public class MapGenerator : MonoBehaviour {
     {
         ClearAll();
 
-        // GenerateBase();
+        GenerateBase();
         Generate(new Coord(-10, -10), new Coord(10, 10));
     }
 
