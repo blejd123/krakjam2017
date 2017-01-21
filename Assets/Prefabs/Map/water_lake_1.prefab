@@ -21,8 +21,25 @@ GameObject:
   - component: {fileID: 4283471602064208}
   - component: {fileID: 212832027386328434}
   - component: {fileID: 60252943775051818}
+  - component: {fileID: 114349770113532964}
   m_Layer: 9
   m_Name: water_lake_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1659328188867794
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4444826411016544}
+  - component: {fileID: 114632799300865036}
+  m_Layer: 9
+  m_Name: Pivot (30)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,10 +52,24 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1645264352822778}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 4.54, y: -7.01, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4444826411016544}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4444826411016544
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1659328188867794}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 4283471602064208}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &60252943775051818
@@ -93,6 +124,30 @@ PolygonCollider2D:
       - {x: 0.3125, y: -0.734375}
       - {x: 0.71875, y: -0.734375}
       - {x: 0.828125, y: -0.625}
+--- !u!114 &114349770113532964
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1645264352822778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa5063ce022cfef4bb337c0d84effcb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IAmPivot: 0
+  OtherPivot: {fileID: 0}
+--- !u!114 &114632799300865036
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1659328188867794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82fb664b471ef494ea40dea3cdc26913, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212832027386328434
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -122,7 +177,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: -74568283
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 352fde7ab9344ce4494dcd848c9820b6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

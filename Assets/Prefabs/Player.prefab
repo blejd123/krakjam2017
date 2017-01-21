@@ -11,6 +11,22 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1291075936651128}
   m_IsPrefabParent: 1
+--- !u!1 &1057821307684638
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4596188071768096}
+  - component: {fileID: 114456958136180146}
+  m_Layer: 9
+  m_Name: Pivot (34)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1216383893987162
 GameObject:
   m_ObjectHideFlags: 0
@@ -20,6 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4065990429123228}
   - component: {fileID: 212687818546402278}
+  - component: {fileID: 114280100991646010}
   m_Layer: 0
   m_Name: nigga_head
   m_TagString: Untagged
@@ -53,6 +70,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4142118759361052}
   - component: {fileID: 212160365383511758}
+  - component: {fileID: 114861551634182804}
   m_Layer: 0
   m_Name: nigga_right_arm
   m_TagString: Untagged
@@ -85,6 +103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4183372862930510}
   - component: {fileID: 212065615727010950}
+  - component: {fileID: 114451554938615222}
   m_Layer: 0
   m_Name: nigga_left_arm
   m_TagString: Untagged
@@ -101,6 +120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4154519888964806}
   - component: {fileID: 212374874132267946}
+  - component: {fileID: 114670209511958770}
   m_Layer: 0
   m_Name: nigga_body
   m_TagString: Untagged
@@ -117,6 +137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4684517990859854}
   - component: {fileID: 212573520224561246}
+  - component: {fileID: 114377241206813132}
   m_Layer: 0
   m_Name: nigga_right_leg
   m_TagString: Untagged
@@ -133,6 +154,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4235307436728398}
   - component: {fileID: 212961818013122432}
+  - component: {fileID: 114025875013515266}
   m_Layer: 0
   m_Name: nigga_left_leg
   m_TagString: Untagged
@@ -170,6 +192,7 @@ Transform:
   - {fileID: 4235307436728398}
   - {fileID: 4065990429123228}
   - {fileID: 4183372862930510}
+  - {fileID: 4596188071768096}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -238,6 +261,19 @@ Transform:
   m_Father: {fileID: 4107698020628208}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4596188071768096
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1057821307684638}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.207, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4107698020628208}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4684517990859854
 Transform:
   m_ObjectHideFlags: 1
@@ -285,6 +321,95 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.25
+--- !u!114 &114025875013515266
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1910602877490282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa5063ce022cfef4bb337c0d84effcb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IAmPivot: 0
+  OtherPivot: {fileID: 4596188071768096}
+--- !u!114 &114280100991646010
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1216383893987162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa5063ce022cfef4bb337c0d84effcb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IAmPivot: 0
+  OtherPivot: {fileID: 4596188071768096}
+--- !u!114 &114377241206813132
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1910357423446920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa5063ce022cfef4bb337c0d84effcb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IAmPivot: 0
+  OtherPivot: {fileID: 4596188071768096}
+--- !u!114 &114451554938615222
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1665156790566044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa5063ce022cfef4bb337c0d84effcb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IAmPivot: 0
+  OtherPivot: {fileID: 4596188071768096}
+--- !u!114 &114456958136180146
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1057821307684638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82fb664b471ef494ea40dea3cdc26913, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114670209511958770
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1876960384305164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa5063ce022cfef4bb337c0d84effcb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IAmPivot: 0
+  OtherPivot: {fileID: 4596188071768096}
+--- !u!114 &114861551634182804
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1358992361645140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa5063ce022cfef4bb337c0d84effcb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IAmPivot: 0
+  OtherPivot: {fileID: 4596188071768096}
 --- !u!114 &114942228906298398
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -473,7 +598,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -74568283
-  m_SortingOrder: 5
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: e6ad0541ea8fe8646ac65d9b27e6b448, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
