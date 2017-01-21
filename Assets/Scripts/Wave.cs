@@ -35,7 +35,9 @@ public class Wave : MonoBehaviour
 		tex.Apply();
 		_spriteRenderer.material.SetTexture("_RaysTex", tex);
 		_spriteRenderer.material.SetFloat("_MaxRange", Range);
-	}
+
+        _marker.transform.localScale = Vector3.zero;
+    }
 
 	public void Update()
 	{
@@ -45,7 +47,8 @@ public class Wave : MonoBehaviour
             float speed = 4*Mathf.PI / maxTimeToStart;
 
             float markerScale = 0.8f + Mathf.Sin(TimeToStart * speed + Mathf.PI) * 0.2f;
-            _marker.transform.localScale = new Vector3(markerScale, markerScale, 1);
+            float parentScale = transform.lossyScale.x;
+            _marker.transform.localScale = new Vector3(markerScale/parentScale, markerScale/parentScale, 1);
             return;
         }
 
