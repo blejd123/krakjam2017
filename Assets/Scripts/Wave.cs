@@ -18,8 +18,6 @@ public class Wave : MonoBehaviour
 
 	public void Start()
 	{
-        Debug.Log("Time to start: " + TimeToStart);
-
         _spriteRenderer.enabled = false;
 
         transform.localScale = Vector3.one * (2.0f * _spriteRenderer.sprite.pixelsPerUnit / _spriteRenderer.sprite.texture.width * Range);
