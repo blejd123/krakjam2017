@@ -8,7 +8,6 @@ public class WaveSpawner : MonoBehaviour
 	[SerializeField] private Wave _wavePrefab;
 	[SerializeField] private float _range = 5.0f;
 	[SerializeField] private float _speed = 5.0f;
-	[SerializeField] private Transform _waveParent;
 
 	public void Update()
 	{

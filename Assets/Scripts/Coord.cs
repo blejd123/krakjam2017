@@ -6,8 +6,8 @@ struct Coord: IEqualityComparer<Coord>
     public int x;
     public int y;
 
-    const float yDiff = (578.0f - 322.0f) / 128.0f;
-    const float width = 578.0f / 128.0f / 2.0f;
+    const float yDiff = 0;//(578.0f - 322.0f) / 128.0f;
+    const float width = 1;//578.0f / 128.0f / 2.0f;
 
     public Coord(int x, int y)
     {
