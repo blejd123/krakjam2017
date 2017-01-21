@@ -9,6 +9,11 @@ public class WaveSpawner : MonoBehaviour
 	[SerializeField] private float _range = 5.0f;
 	[SerializeField] private float _speed = 5.0f;
 
+    private float _lastSpawn = -10000.0f;
+
+    private const float COOLDOWN = 0.25f;
+    private const float TIME_TO_SPAWN = 1.0f;
+
 	public void Update()
 	{
 		if (Input.GetMouseButtonDown(0))
@@ -21,6 +26,9 @@ public class WaveSpawner : MonoBehaviour
 			var go = Instantiate(_wavePrefab.gameObject);
             go.transform.position = pos;
 			var wave = go.GetComponent<Wave>();
+            float canStartTime = Mathf.Max(Time.time, _lastSpawn + COOLDOWN);
+            _lastSpawn = canStartTime;
+            wave.TimeToStart = (canStartTime - Time.time) + TIME_TO_SPAWN;
 			wave.Origin = pos;
 			wave.Range = _range;
 			wave.Speed = _speed;

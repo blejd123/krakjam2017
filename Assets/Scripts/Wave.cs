@@ -12,12 +12,14 @@ public class Wave : MonoBehaviour
 	public float Range;
 	public float Speed;
 	public float[] Rays;
+    public float TimeToStart;
 
-	private float _currentRange = 0.0f;
-    private float _timeToStart = 1.25f;
+    private float _currentRange = 0.0f;
 
 	public void Start()
 	{
+        Debug.Log("Time to start: " + TimeToStart);
+
         _spriteRenderer.enabled = false;
 
         transform.localScale = Vector3.one * (2.0f * _spriteRenderer.sprite.pixelsPerUnit / _spriteRenderer.sprite.texture.width * Range);
@@ -36,8 +38,8 @@ public class Wave : MonoBehaviour
 
 	public void Update()
 	{
-        _timeToStart -= Time.deltaTime;
-        if (_timeToStart > 0)
+        TimeToStart -= Time.deltaTime;
+        if (TimeToStart > 0)
         {
             return;
         }
