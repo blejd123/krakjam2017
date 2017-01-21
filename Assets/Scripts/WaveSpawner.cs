@@ -8,12 +8,13 @@ public class WaveSpawner : MonoBehaviour
 	[SerializeField] private Wave _wavePrefab;
 	[SerializeField] private float _range = 5.0f;
 	[SerializeField] private float _speed = 5.0f;
+	[SerializeField] private Transform _waveParent;
 
 	public void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.R))
 		{
-			var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			var pos = (Camera.main.ScreenToWorldPoint(Input.mousePosition));
 			pos.z = 0.0f;
 			var rays = _waveRaycaster.Raycast(pos, _range);
 			var go = Instantiate(_wavePrefab.gameObject);
