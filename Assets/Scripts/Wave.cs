@@ -55,7 +55,7 @@ public class Wave : MonoBehaviour
         _spriteRenderer.material.SetFloat("_CurrentRange", _currentRange);
 		_currentRange += Speed * Time.deltaTime;
 
-		RaycastHit2D hit = Physics2D.Raycast(Origin, Player.Instance.Position - Origin, _currentRange);
+		RaycastHit2D hit = Physics2D.Raycast(Origin, Player.Instance.Position - Origin, _currentRange * 0.7f);
 
         if (hit.collider != null && hit.collider.attachedRigidbody != null && hit.collider.attachedRigidbody.gameObject == Player.Instance.gameObject)
 		{

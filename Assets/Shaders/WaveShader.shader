@@ -56,7 +56,12 @@ Shader "Custom/Wave"
 		#define PI 3.14159265359
 
 		fixed4 _Color;
-		
+		sampler2D _MainTex;
+		sampler2D _AlphaTex;
+		sampler2D _RaysTex;
+		float _MaxRange;
+		float _CurrentRange;
+
 		v2f vert(appdata_t IN)
 		{
 			v2f OUT;
@@ -69,13 +74,7 @@ Shader "Custom/Wave"
 
 			return OUT;
 		}
-
-		sampler2D _MainTex;
-		sampler2D _AlphaTex;
-		sampler2D _RaysTex;
-		float _MaxRange;
-		float _CurrentRange;
-		
+				
 		fixed4 SampleSpriteTexture(float2 uv)
 		{	
 			fixed4 color = tex2D(_MainTex, uv);
@@ -95,13 +94,15 @@ Shader "Custom/Wave"
 
 		fixed4 frag(v2f IN) : SV_Target
 		{
-			fixed4 c = SampleSpriteTexture(IN.texcoord) * IN.color;
-			float2 centeredPos = IN.texcoord - float2(0.5, 0.5);
+			float2 uv = IN.texcoord;
+			float2 centeredPos = uv - float2(0.5, 0.5);
 			float angle = GetAngle(centeredPos);
 			float4 ray = tex2D(_RaysTex, float2(angle, 0.0));
 			float hitDist = ray.r * 255.0 + ray.g;
 			float r = length(centeredPos)*2.0 * _MaxRange;
-			c.a = r <= min(_CurrentRange, hitDist) ? ( r / _MaxRange > 0.9 ? (1.0 - r / _MaxRange) / 0.1 : 1.0) : 0.0;
+			centeredPos *= _MaxRange / _CurrentRange;
+			float4 c = SampleSpriteTexture(centeredPos + float2(0.5, 0.5)) * IN.color;
+			c.a *= r <= min(_CurrentRange, hitDist) ? ( r / _MaxRange > 0.9 ? (1.0 - r / _MaxRange) / 0.1 : 1.0) : 0.0;
 			c.rgb *= c.a;
 			return c;
 		}
