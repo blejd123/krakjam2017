@@ -13,8 +13,8 @@ public class AppFlow : MonoBehaviour
 	public static AppFlow Instance;
 
 	[SerializeField] private Image _fadeOverlay;
-	[SerializeField] private string _mainMenuScene;
 	[SerializeField] private string _introScene;
+	[SerializeField] private string _mainMenuScene;
 	[SerializeField] private string _gameplayScene;
 	[SerializeField] private string _gameOverScene;
 
@@ -27,12 +27,7 @@ public class AppFlow : MonoBehaviour
 
 	void Start ()
 	{
-		GoToMainMenu();
-	}
-
-	public void GoToMainMenu()
-	{
-		LoadScene(_mainMenuScene);
+		GoToIntro();
 	}
 
 	public void GoToIntro()
@@ -40,6 +35,11 @@ public class AppFlow : MonoBehaviour
 		LoadScene(_introScene);
 	}
 
+	public void GoToMainMenu()
+	{
+		LoadScene(_mainMenuScene);
+	}
+	
 	public void GoToGameplay()
 	{
 		LoadScene(_gameplayScene);
@@ -49,12 +49,12 @@ public class AppFlow : MonoBehaviour
 	{
 		LoadScene(_gameOverScene);
 	}
-
-	private void LoadScene(string scene)
+	
+	public void LoadScene(string scene)
 	{
 		FadeIn(() =>
 		{
-			SceneManager.LoadScene(_gameOverScene);
+			SceneManager.LoadScene(scene);
 			FadeOut();
 		});
 	}
