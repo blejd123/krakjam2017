@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4892985973302762}
   - component: {fileID: 212348601451069730}
   - component: {fileID: 114208452575459064}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DebugEmptyTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 84c455bb1fb3f054cb721787b0bbec29, type: 3}
-  m_Color: {r: 1, g: 0.3455882, b: 0.3455882, a: 1}
+  m_Sprite: {fileID: 21300000, guid: cca3645af48a36041b2b109eeef0389c, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

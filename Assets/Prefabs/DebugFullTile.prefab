@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212348601451069730}
   - component: {fileID: 114073875645000846}
   - component: {fileID: 61610315722696062}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DebugFullTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
