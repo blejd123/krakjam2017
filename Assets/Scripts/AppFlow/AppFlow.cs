@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
@@ -31,30 +32,31 @@ public class AppFlow : MonoBehaviour
 
 	public void GoToMainMenu()
 	{
-		FadeIn();
-		SceneManager.LoadScene(_mainMenuScene);
-		FadeOut();
+		LoadScene(_mainMenuScene);
 	}
 
 	public void GoToIntro()
 	{
-		FadeIn();
-		SceneManager.LoadScene(_introScene);
-		FadeOut();
+		LoadScene(_introScene);
 	}
 
 	public void GoToGameplay()
 	{
-		FadeIn();
-		SceneManager.LoadScene(_gameplayScene);
-		FadeOut();
+		LoadScene(_gameplayScene);
 	}
 
 	public void GoToGameOver()
 	{
-		FadeIn();
-		SceneManager.LoadScene(_gameOverScene);
-		FadeOut();
+		LoadScene(_gameOverScene);
+	}
+
+	private void LoadScene(string scene)
+	{
+		FadeIn(() =>
+		{
+			SceneManager.LoadScene(_gameOverScene);
+			FadeOut();
+		});
 	}
 
 	private void FadeOut()
@@ -64,10 +66,13 @@ public class AppFlow : MonoBehaviour
 		_fadeOverlay.DOFade(0.0f, FADE_DURATION);
 	}
 
-	private void FadeIn()
+	private void FadeIn(Action onComplete)
 	{
 		_fadeOverlay.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
 		_fadeOverlay.DOKill();
-		_fadeOverlay.DOFade(1.0f, FADE_DURATION);
+		_fadeOverlay.DOFade(1.0f, FADE_DURATION).OnComplete(() =>
+		{
+			onComplete();
+		});
 	}
 }
