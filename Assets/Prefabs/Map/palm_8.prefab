@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4463454463557392}
   - component: {fileID: 212736469134446710}
   - component: {fileID: 61557192748326470}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: palm_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
