@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4283471602064208}
   - component: {fileID: 212832027386328434}
   - component: {fileID: 60252943775051818}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: water_lake_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
