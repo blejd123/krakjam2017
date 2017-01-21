@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private enum Direction
+    {
+        Up, Down, Left, Right
+    }
+
     public static Player Instance;
 
-    public SpriteRenderer torso;
-    public SpriteRenderer leftArm;
-    public SpriteRenderer rightArm;
-    public SpriteRenderer head;
-    public SpriteRenderer leftLeg;
-    public SpriteRenderer rightLeg;
+    public SpriteRenderer[] torsos;
+    public SpriteRenderer[] leftArms;
+    public SpriteRenderer[] rightArms;
+    public SpriteRenderer[] heads;
+    public SpriteRenderer[] leftLegs;
+    public SpriteRenderer[] rightLegs;
+
+    public GameObject Down;
+    public GameObject Up;
 
     public float Speed;
 
@@ -39,10 +47,10 @@ public class Player : MonoBehaviour
         Instance = this;
         rigidBody2D = GetComponent<Rigidbody2D>();
 
-        headStartPos = head.transform.localPosition;
-        torsoStartPos = torso.transform.localPosition;
-        leftLegStartPos = leftLeg.transform.localPosition;
-        rightLegStartPos = rightLeg.transform.localPosition;
+        headStartPos = heads[0].transform.localPosition;
+        torsoStartPos = torsos[0].transform.localPosition;
+        leftLegStartPos = leftLegs[0].transform.localPosition;
+        rightLegStartPos = rightLegs[0].transform.localPosition;
     }
 
     void Update()
@@ -67,33 +75,66 @@ public class Player : MonoBehaviour
 
         rigidBody2D.velocity = direction * Speed;
 
+        EnableAnimation(direction);
         Animate(direction != Vector2.zero);
 
-	    transform.position = FollowingCamera.Instance.Clamp(transform.position, 1.0f, 1.0f);
+        if(FollowingCamera.Instance != null)
+        {
+            transform.position = FollowingCamera.Instance.Clamp(transform.position, 1.0f, 1.0f);
+        }
     }
 
     void Animate(bool moving)
     {
-        head.transform.localRotation = Quaternion.Euler(0, 0, Mathf.Sin(Time.time * 6) * 10);
-        head.transform.localPosition = headStartPos + new Vector3(0, Mathf.Sin(Time.time * 12) * 0.03f, 0);
+        foreach(var head in heads)
+        {
+            head.transform.localRotation = Quaternion.Euler(0, 0, Mathf.Sin(Time.time * 6) * 10);
+            head.transform.localPosition = headStartPos + new Vector3(0, Mathf.Sin(Time.time * 12) * 0.03f, 0);
+        }
 
         float armAngle = Mathf.Sin(Time.time * 12) * 10;
-        leftArm.transform.localRotation = Quaternion.Euler(0, 0, armAngle);
-        rightArm.transform.localRotation = Quaternion.Euler(0, 0, -armAngle);
+        foreach (var leftArm in leftArms)
+            leftArm.transform.localRotation = Quaternion.Euler(0, 0, armAngle);
 
-        torso.transform.localPosition = torsoStartPos + new Vector3(0, Mathf.Sin(Time.time * 12) * 0.02f, 0);
+        foreach(var rightArm in rightArms)
+            rightArm.transform.localRotation = Quaternion.Euler(0, 0, -armAngle);
+
+        foreach (var torso in torsos)
+            torso.transform.localPosition = torsoStartPos + new Vector3(0, Mathf.Sin(Time.time * 12) * 0.02f, 0);
 
         if(moving)
         {
             const float legCycleTime = 0.06f;
-            leftLeg.transform.localPosition = leftLegStartPos + new Vector3(0, Mathf.PingPong(Time.time / 2, legCycleTime), 0);
-            rightLeg.transform.localPosition = rightLegStartPos + new Vector3(0, Mathf.PingPong(Time.time / 2 + legCycleTime, legCycleTime), 0);
+            foreach(var leftLeg in leftLegs)
+                leftLeg.transform.localPosition = leftLegStartPos + new Vector3(0, Mathf.PingPong(Time.time / 2, legCycleTime), 0);
+            foreach(var rightLeg in rightLegs)
+                rightLeg.transform.localPosition = rightLegStartPos + new Vector3(0, Mathf.PingPong(Time.time / 2 + legCycleTime, legCycleTime), 0);
         } else
         {
-            leftLeg.transform.localPosition = leftLegStartPos;
-            rightLeg.transform.localPosition = rightLegStartPos;
+            foreach (var leftLeg in leftLegs)
+                leftLeg.transform.localPosition = leftLegStartPos;
+            foreach (var rightLeg in rightLegs)
+                rightLeg.transform.localPosition = rightLegStartPos;
+        }
+    }
+
+    void EnableAnimation(Vector2 direction)
+    {
+        Direction animDir = Direction.Down;
+
+        if(direction.x > 0)
+        {
+            animDir = Direction.Left;
+        } else if(direction.x < 0)
+        {
+            animDir = Direction.Right;
+        } else if (direction.y > 0)
+        {
+            animDir = Direction.Up;
         }
 
+        Up.SetActive(animDir == Direction.Up);
+        Down.SetActive(animDir == Direction.Down);
     }
 
 }
