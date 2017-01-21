@@ -7,10 +7,12 @@ public class Wave : MonoBehaviour
 {
 	[SerializeField] private SpriteRenderer _spriteRenderer;
 
-	public Vector3 Origin;
+	public Vector2 Origin;
 	public float Range;
 	public float Speed;
 	public float[] Rays;
+
+	private float _currentRange = 0.0f;
 
 	public void Start()
 	{
@@ -25,24 +27,28 @@ public class Wave : MonoBehaviour
 		tex.SetPixels32(pixels);
 		tex.Apply();
 		_spriteRenderer.material.SetTexture("_RaysTex", tex);
-		StartCoroutine(AnimateRange());
-		//_spriteRenderer.material.SetFloat("_Range", Range);
+		_spriteRenderer.material.SetFloat("_MaxRange", Range);
+	}
+
+	public void Update()
+	{
+		_spriteRenderer.material.SetFloat("_CurrentRange", _currentRange);
+		_currentRange += Speed * Time.deltaTime;
+
+		RaycastHit2D hit = Physics2D.Raycast(Origin, Player.Instance.Position - Origin, _currentRange);
+		if (hit.collider != null)
+		{
+			Player.Instance.OnWaveCollision();
+		}
+
+		if (_currentRange >= Range)
+		{
+			Destroy(gameObject);
+		}
 	}
 
 	private Color32 RangeToColor32(float range)
 	{
 		return new Color32((byte) range, (byte) ((range - (int) range)*255), 0, 0);
-	}
-
-	private IEnumerator AnimateRange()
-	{
-		_spriteRenderer.material.SetFloat("_MaxRange", Range);
-		float range = 0.0f;
-		while (range <= Range)
-		{
-			_spriteRenderer.material.SetFloat("_CurrentRange", range);
-			range += Speed*Time.deltaTime;
-			yield return null;
-		}
 	}
 }
