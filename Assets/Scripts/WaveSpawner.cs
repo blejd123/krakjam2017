@@ -11,7 +11,7 @@ public class WaveSpawner : MonoBehaviour
 
 	public void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.R))
+		if (Input.GetMouseButtonDown(0))
 		{
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             float dist = -ray.origin.z / ray.direction.z;
