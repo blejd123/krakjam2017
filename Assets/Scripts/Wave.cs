@@ -6,6 +6,7 @@ using UnityEngine;
 public class Wave : MonoBehaviour
 {
 	[SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private GameObject _marker;
 
 	public Vector2 Origin;
 	public float Range;
@@ -13,10 +14,13 @@ public class Wave : MonoBehaviour
 	public float[] Rays;
 
 	private float _currentRange = 0.0f;
+    private float _timeToStart = 1.25f;
 
 	public void Start()
 	{
-		transform.localScale = Vector3.one * (2.0f * _spriteRenderer.sprite.pixelsPerUnit / _spriteRenderer.sprite.texture.width * Range);
+        _spriteRenderer.enabled = false;
+
+        transform.localScale = Vector3.one * (2.0f * _spriteRenderer.sprite.pixelsPerUnit / _spriteRenderer.sprite.texture.width * Range);
 		Texture2D tex = new Texture2D(Constants.RAY_COUNT, 1, TextureFormat.ARGB32, false);
 		Color32[] pixels = new Color32[Constants.RAY_COUNT];
 		for (int i = 0; i < Constants.RAY_COUNT; i++)
@@ -32,7 +36,16 @@ public class Wave : MonoBehaviour
 
 	public void Update()
 	{
-		_spriteRenderer.material.SetFloat("_CurrentRange", _currentRange);
+        _timeToStart -= Time.deltaTime;
+        if (_timeToStart > 0)
+        {
+            return;
+        }
+
+        _marker.SetActive(false);
+
+        _spriteRenderer.enabled = true;
+        _spriteRenderer.material.SetFloat("_CurrentRange", _currentRange);
 		_currentRange += Speed * Time.deltaTime;
 
 		RaycastHit2D hit = Physics2D.Raycast(Origin, Player.Instance.Position - Origin, _currentRange);
