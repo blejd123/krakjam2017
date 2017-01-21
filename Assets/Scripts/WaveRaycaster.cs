@@ -9,7 +9,6 @@ public class WaveRaycaster : MonoBehaviour
 
 	public float[] Raycast(Vector2 origin, float maxDistance)
 	{
-		Debug.Log(origin);
 		float[] hits = new float[Constants.RAY_COUNT];
 		for (int i = 0; i < Constants.RAY_COUNT; i++)
 		{

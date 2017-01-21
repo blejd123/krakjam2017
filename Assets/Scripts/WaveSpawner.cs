@@ -14,10 +14,12 @@ public class WaveSpawner : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.R))
 		{
-			var pos = (Camera.main.ScreenToWorldPoint(Input.mousePosition));
-			pos.z = 0.0f;
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            float dist = -ray.origin.z / ray.direction.z;
+            var pos = ray.origin + ray.direction * dist;
 			var rays = _waveRaycaster.Raycast(pos, _range);
 			var go = Instantiate(_wavePrefab.gameObject);
+            pos.z = 0;
 			go.transform.position = pos;
 			var wave = go.GetComponent<Wave>();
 			wave.Origin = pos;
