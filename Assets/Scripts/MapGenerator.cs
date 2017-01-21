@@ -5,7 +5,6 @@ using UnityEngine;
 public class MapGenerator : MonoBehaviour {
 
     Dictionary<Coord, Tile> map = new Dictionary<Coord, Tile>();
-    List<GameObject> objects = new List<GameObject>();
 
     public int VisibleTilesX;
     public int VisibleTilesY;
@@ -15,41 +14,16 @@ public class MapGenerator : MonoBehaviour {
 
     void Start()
     {
-        Regenerate();
+        GenerateBase();
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.G))
-        {
-            Regenerate();
-        }
-
         var cameraPos = FollowingCamera.Instance.transform.position;
         var center = Coord.PositionToCoord(cameraPos);
 
         Generate(new Coord(center.x - VisibleTilesX / 2, center.y - VisibleTilesY / 2),
             new Coord(center.x + VisibleTilesX / 2, center.y + VisibleTilesY / 2));
-    }
-
-    void Regenerate()
-    {
-        ClearAll();
-
-        GenerateBase();
-        Generate(new Coord(-10, -10), new Coord(10, 10));
-    }
-
-    void ClearAll()
-    {
-        map.Clear();
-
-        foreach(GameObject obj in objects)
-        {
-            GameObject.Destroy(obj);
-        }
-
-        objects.Clear();
     }
 
     void GenerateBase()
@@ -76,17 +50,23 @@ public class MapGenerator : MonoBehaviour {
 
     void GenerateTile(Coord coord)
     {
-        if(map.ContainsKey(coord))
+        Tile tile = null;
+        map.TryGetValue(coord, out tile);
+
+        if(tile == null)
         {
-            return;
+            bool empty = Random.Range(0, 5) != 1;
+            tile = new Tile(empty ? TileType.Empty : TileType.Full);
+            map.Add(coord, tile);
         }
 
-        bool empty = Random.Range(0, 5) != 1;
-        var tile = new Tile(empty ? TileType.Empty : TileType.Full);
-        map.Add(coord, tile);
-
-        var prefab = tile.type == TileType.Full ? debugFullObject : debugEmptyObject;
-        objects.Add(GameObject.Instantiate(prefab, coord.position, Quaternion.identity));
+        if(!tile.instantiated)
+        {
+            var prefab = tile.type == TileType.Full ? debugFullObject : debugEmptyObject;
+            var newObject = Lean.LeanPool.Spawn(prefab, coord.position, Quaternion.identity);
+            newObject.GetComponent<Despawner>().tile = tile;
+            tile.instantiated = true;
+        }
     }
 	
 }
