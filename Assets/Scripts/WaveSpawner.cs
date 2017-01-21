@@ -18,6 +18,8 @@ public class WaveSpawner : MonoBehaviour
 	{
 		if (Input.GetMouseButtonDown(0))
 		{
+            Crosshair.Instance.OnWaveSpawn();
+
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             float dist = -ray.origin.z / ray.direction.z;
             var pos = ray.origin + ray.direction * dist;
