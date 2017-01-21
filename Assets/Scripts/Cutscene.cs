@@ -19,6 +19,10 @@ public class Cutscene : MonoBehaviour
 
 	public void Play()
 	{
+		foreach (CutsceneElement cutsceneElement in _elements)
+		{
+			cutsceneElement.Root.SetActive(false);
+		}
 		StartCoroutine(PlayCoroutine());
 	}
 
@@ -26,8 +30,10 @@ public class Cutscene : MonoBehaviour
 	{
 		foreach (CutsceneElement cutsceneElement in _elements)
 		{
+			cutsceneElement.Root.SetActive(true);
 			StartCoroutine(cutsceneElement.PlayAudio(_audioSource));
 			yield return cutsceneElement.Play();
+			cutsceneElement.Root.SetActive(false);
 		}
 		AppFlow.Instance.LoadScene(_onCompleteScene);
 	}

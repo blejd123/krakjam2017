@@ -9,6 +9,8 @@ using UnityEngine.UI;
 [Serializable]
 public class CutsceneElement
 {
+	public  GameObject Root;
+
 	[SerializeField] private float _delay;
 	[SerializeField] private float _duration;
 	[SerializeField] private Image _image;
@@ -25,15 +27,23 @@ public class CutsceneElement
 		if (_fadeDuration > 0.0f)
 		{
 			_image.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-			_image.DOFade(1.0f, _fadeDuration);
-			_image.DOFade(0.0f, _fadeDuration).SetDelay(_duration - _fadeDuration);
+			_image.DOFade(1.0f, _fadeDuration);			
 		}
-		RectTransform tr = _image.rectTransform;
-		tr.DOKill();
-		Sequence sequence = DOTween.Sequence();
-		sequence.Append(tr.DOMove(_endTransform.position, _duration));
-		sequence.Join(tr.DOScale(_endTransform.lossyScale, _duration));
-		yield return sequence.Join(tr.DORotate(_endTransform.rotation.eulerAngles, _duration)).WaitForCompletion();
+		
+		if (_endTransform != null)
+		{
+			_image.DOFade(0.0f, _fadeDuration).SetDelay(_duration - _fadeDuration);
+			RectTransform tr = _image.rectTransform;
+			tr.DOKill();
+			Sequence sequence = DOTween.Sequence();
+			sequence.Append(tr.DOMove(_endTransform.position, _duration));
+			sequence.Join(tr.DOScale(_endTransform.lossyScale, _duration));
+			yield return sequence.Join(tr.DORotate(_endTransform.rotation.eulerAngles, _duration)).WaitForCompletion();
+		}
+		else
+		{
+			yield return _image.DOFade(0.0f, _fadeDuration).SetDelay(_duration - _fadeDuration).WaitForCompletion();
+		}
 	}
 
 	public IEnumerator PlayAudio(AudioSource audioSource)
