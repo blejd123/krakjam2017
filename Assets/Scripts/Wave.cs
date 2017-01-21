@@ -16,6 +16,7 @@ public class Wave : MonoBehaviour
 
     private float _currentRange = 0.0f;
     private float maxTimeToStart;
+    private bool _detonated = false;
 
 	public void Start()
 	{
@@ -42,17 +43,22 @@ public class Wave : MonoBehaviour
 	public void Update()
 	{
         TimeToStart -= Time.deltaTime;
+        float markerParentScale = transform.lossyScale.x;
+
         if (TimeToStart > 0)
         {
             float speed = 4*Mathf.PI / maxTimeToStart;
 
             float markerScale = 0.8f + Mathf.Sin(TimeToStart * speed + Mathf.PI) * 0.2f;
-            float parentScale = transform.lossyScale.x;
-            _marker.transform.localScale = new Vector3(markerScale/parentScale, markerScale/parentScale, 1);
+            _marker.transform.localScale = new Vector3(markerScale/ markerParentScale, markerScale/ markerParentScale, 1);
             return;
+        } else if(!_detonated)
+        {
+            _detonated = true;
+            const float easeDuration = 0.4f;
+            _marker.transform.DOScale(1.0f / markerParentScale * 1.3f, easeDuration).SetEase(Ease.OutSine);
+            _marker.GetComponent<SpriteRenderer>().DOColor(new Color(1, 1, 1, 0), easeDuration).SetEase(Ease.OutSine);
         }
-
-        _marker.SetActive(false);
 
         _spriteRenderer.enabled = true;
         _spriteRenderer.material.SetFloat("_CurrentRange", _currentRange);
