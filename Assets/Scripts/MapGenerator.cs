@@ -55,7 +55,7 @@ public class MapGenerator : MonoBehaviour {
 
         if(tile == null)
         {
-            bool empty = Random.Range(0, 5) != 1;
+            bool empty = true;// Random.Range(0, 5) != 1;
             tile = new Tile(empty ? TileType.Empty : TileType.Full);
             map.Add(coord, tile);
         }
@@ -63,8 +63,9 @@ public class MapGenerator : MonoBehaviour {
         if(!tile.instantiated)
         {
             var prefab = tile.type == TileType.Full ? debugFullObject : debugEmptyObject;
-            var newObject = Lean.LeanPool.Spawn(prefab, coord.position, Quaternion.identity);
+            var newObject = Lean.LeanPool.Spawn(prefab, coord.position, Quaternion.Euler(0, 0, Random.Range(0, 4) * 90));
             newObject.GetComponent<Despawner>().tile = tile;
+            newObject.transform.localScale = new Vector3(Random.Range(0, 2) == 0 ? -1 : 1, Random.Range(0, 2) == 0 ? -1 : 1, 1);
             tile.instantiated = true;
         }
     }
