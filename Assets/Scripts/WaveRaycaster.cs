@@ -7,12 +7,19 @@ public class WaveRaycaster : MonoBehaviour
 {
 	[SerializeField] private float _debugDrawDuration = 2.0f;
 
+	private int _obstaclesMask;
+
+	public void Awake()
+	{
+		_obstaclesMask = LayerMask.GetMask("Obstacles");
+	}
+
 	public float[] Raycast(Vector2 origin, float maxDistance)
 	{
 		float[] hits = new float[Constants.RAY_COUNT];
 		for (int i = 0; i < Constants.RAY_COUNT; i++)
 		{
-			RaycastHit2D hit = Physics2D.Raycast(origin, Quaternion.Euler(0.0f, 0.0f, i)*Vector2.up, maxDistance);
+			RaycastHit2D hit = Physics2D.Raycast(origin, Quaternion.Euler(0.0f, 0.0f, i)*Vector2.up, maxDistance, _obstaclesMask);
 			if(hit.collider != null)
 			{
 				hits[i] = hit.distance;
@@ -23,18 +30,18 @@ public class WaveRaycaster : MonoBehaviour
 			}
 		}
 
-		for (int i = 0; i < Constants.RAY_COUNT; i++)
-		{
-			Vector3 dir = Quaternion.Euler(0.0f, 0.0f, i)*Vector2.up;
-			if (hits[i] >= 0.0f)
-			{
-				Debug.DrawLine(origin, new Vector3(origin.x, origin.y, 0.0f) + dir * hits[i], Color.red, _debugDrawDuration);
-			}
-			else
-			{
-				Debug.DrawRay(origin, dir * maxDistance, Color.green, _debugDrawDuration);
-			}
-		}
+		//for (int i = 0; i < Constants.RAY_COUNT; i++)
+		//{
+		//	Vector3 dir = Quaternion.Euler(0.0f, 0.0f, i)*Vector2.up;
+		//	if (hits[i] >= 0.0f)
+		//	{
+		//		Debug.DrawLine(origin, new Vector3(origin.x, origin.y, 0.0f) + dir * hits[i], Color.red, _debugDrawDuration);
+		//	}
+		//	else
+		//	{
+		//		Debug.DrawRay(origin, dir * maxDistance, Color.green, _debugDrawDuration);
+		//	}
+		//}
 		return hits;
 	}
 }

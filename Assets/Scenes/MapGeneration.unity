@@ -176,6 +176,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1273965648882640, guid: ce257fbd3009f1549bb725024c7ec383, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1519925907971936, guid: ce257fbd3009f1549bb725024c7ec383, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1291075936651128, guid: ce257fbd3009f1549bb725024c7ec383, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce257fbd3009f1549bb725024c7ec383, type: 2}
   m_IsPrefabParent: 0
