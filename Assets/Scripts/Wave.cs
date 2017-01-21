@@ -32,16 +32,18 @@ public class Wave : MonoBehaviour
 
 	public void Update()
 	{
-		while (_currentRange <= Range)
-		{
-			_spriteRenderer.material.SetFloat("_CurrentRange", _currentRange);
-			_currentRange += Speed * Time.deltaTime;
-		}
+		_spriteRenderer.material.SetFloat("_CurrentRange", _currentRange);
+		_currentRange += Speed * Time.deltaTime;
 
 		RaycastHit2D hit = Physics2D.Raycast(Origin, Player.Instance.Position - Origin, _currentRange);
 		if (hit.collider != null)
 		{
 			Player.Instance.OnWaveCollision();
+		}
+
+		if (_currentRange >= Range)
+		{
+			Destroy(gameObject);
 		}
 	}
 
