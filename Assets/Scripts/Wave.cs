@@ -15,10 +15,11 @@ public class Wave : MonoBehaviour
     public float TimeToStart;
 
     private float _currentRange = 0.0f;
+    private float maxTimeToStart;
 
 	public void Start()
 	{
-        Debug.Log("Time to start: " + TimeToStart);
+        maxTimeToStart = TimeToStart;
 
         _spriteRenderer.enabled = false;
 
@@ -41,6 +42,10 @@ public class Wave : MonoBehaviour
         TimeToStart -= Time.deltaTime;
         if (TimeToStart > 0)
         {
+            float speed = 4*Mathf.PI / maxTimeToStart;
+
+            float markerScale = 0.8f + Mathf.Sin(TimeToStart * speed + Mathf.PI) * 0.2f;
+            _marker.transform.localScale = new Vector3(markerScale, markerScale, 1);
             return;
         }
 
