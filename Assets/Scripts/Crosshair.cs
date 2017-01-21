@@ -18,7 +18,7 @@ public class Crosshair : MonoBehaviour {
     {
         transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        var diff = transform.position - lastMousePos;
+        var diff = Input.mousePosition - lastMousePos;
 
         if(diff.magnitude < 0.01f)
         {
@@ -26,7 +26,7 @@ public class Crosshair : MonoBehaviour {
         }
 
         diff.Normalize();
-        lastMousePos = transform.position;
+        lastMousePos = Input.mousePosition;
 
         var rot = Quaternion.identity;
         rot.SetFromToRotation(Vector3.up, diff);
