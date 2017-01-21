@@ -8,20 +8,20 @@ Shader "Custom/Wave"
 		_RaysTex("Rays Texture", 2D) = "white" {}
 		_Color("Tint", Color) = (1,1,1,1)
 		[MaterialToggle] PixelSnap("Pixel snap", Float) = 0
-		_Origin("Origin", Vector) = (0,0,0)
-		_Range("Range", float) = 1.0
+		_MaxRange("MaxRange", float) = 1.0
+		_CurrentRange("CurrentRange", float) = 1.0
 	}
 
 	SubShader
 	{
 		Tags
 		{
-		"Queue" = "Transparent"
-		"IgnoreProjector" = "True"
-		"RenderType" = "Transparent"
-		"PreviewType" = "Plane"
-		"CanUseSpriteAtlas" = "False"
-	}
+			"Queue" = "Transparent"
+			"IgnoreProjector" = "True"
+			"RenderType" = "Transparent"
+			"PreviewType" = "Plane"
+			"CanUseSpriteAtlas" = "False"
+		}
 
 	Cull Off
 	Lighting Off
@@ -61,7 +61,6 @@ Shader "Custom/Wave"
 		{
 			v2f OUT;
 			OUT.vertex = UnityObjectToClipPos(IN.vertex);
-			//OUT.wpos = mul(unity_ObjectToWorld, IN.vertex);
 			OUT.texcoord = IN.texcoord;
 			OUT.color = IN.color * _Color;
 	#ifdef PIXELSNAP_ON
@@ -74,8 +73,8 @@ Shader "Custom/Wave"
 		sampler2D _MainTex;
 		sampler2D _AlphaTex;
 		sampler2D _RaysTex;
-		float3 _Origin;
-		float _Range;
+		float _MaxRange;
+		float _CurrentRange;
 		
 		fixed4 SampleSpriteTexture(float2 uv)
 		{	
@@ -99,11 +98,9 @@ Shader "Custom/Wave"
 			fixed4 c = SampleSpriteTexture(IN.texcoord) * IN.color;
 			float2 centeredPos = IN.texcoord - float2(0.5, 0.5);
 			float angle = GetAngle(centeredPos);
-			float4 ray = tex2D(_MainTex, float2(angle, 0.0));
+			float4 ray = tex2D(_RaysTex, float2(angle, 0.0));
 			float hitDist = ray.r * 255.0 + ray.g;
-			int show = length(centeredPos) * _Range <= hitDist ? 1 : 0;
-			c.rgb = 1.0;
-			c.a = show ? 1.0 : 0.0;
+			c.a = length(centeredPos)*2.0 * _MaxRange <= min(_CurrentRange, hitDist) ? 1.0 : 0.0;
 			c.rgb *= c.a;
 			return c;
 		}
