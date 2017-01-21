@@ -36,7 +36,8 @@ public class Wave : MonoBehaviour
 		_currentRange += Speed * Time.deltaTime;
 
 		RaycastHit2D hit = Physics2D.Raycast(Origin, Player.Instance.Position - Origin, _currentRange);
-		if (hit.collider != null)
+
+        if (hit.collider != null && hit.collider.attachedRigidbody != null && hit.collider.attachedRigidbody.gameObject == Player.Instance.gameObject)
 		{
 			Player.Instance.OnWaveCollision();
 		}
