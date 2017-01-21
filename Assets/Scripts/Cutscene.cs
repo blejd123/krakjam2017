@@ -6,6 +6,7 @@ public class Cutscene : MonoBehaviour
 {
 	[SerializeField] private string _onCompleteScene;
 	[SerializeField] private bool _playOnStart;
+	[SerializeField] private AudioSource _audioSource;
 	[SerializeField] private List<CutsceneElement> _elements = new List<CutsceneElement>();
 
 	public void Start()
@@ -25,8 +26,9 @@ public class Cutscene : MonoBehaviour
 	{
 		foreach (CutsceneElement cutsceneElement in _elements)
 		{
+			StartCoroutine(cutsceneElement.PlayAudio(_audioSource));
 			yield return cutsceneElement.Play();
-			AppFlow.Instance.LoadScene(_onCompleteScene);
 		}
+		AppFlow.Instance.LoadScene(_onCompleteScene);
 	}
 }

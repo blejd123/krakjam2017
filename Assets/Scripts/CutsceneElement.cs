@@ -15,6 +15,8 @@ public class CutsceneElement
 	[SerializeField] private RectTransform _endTransform;
 	[SerializeField] private UnityEvent _onComplete;
 	[SerializeField] private float _fadeDuration;
+	[SerializeField] private AudioClip _sound;
+	[SerializeField] private float _soundDelay;
 
 	public IEnumerator Play()
 	{
@@ -32,5 +34,16 @@ public class CutsceneElement
 		sequence.Append(tr.DOMove(_endTransform.position, _duration));
 		sequence.Join(tr.DOScale(_endTransform.lossyScale, _duration));
 		yield return sequence.Join(tr.DORotate(_endTransform.rotation.eulerAngles, _duration)).WaitForCompletion();
+	}
+
+	public IEnumerator PlayAudio(AudioSource audioSource)
+	{
+		if (_sound != null)
+		{
+			yield return new WaitForSeconds(_soundDelay);
+			audioSource.loop = false;
+			audioSource.clip = _sound;
+			audioSource.Play();
+		}
 	}
 }

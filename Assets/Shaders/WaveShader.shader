@@ -100,7 +100,8 @@ Shader "Custom/Wave"
 			float angle = GetAngle(centeredPos);
 			float4 ray = tex2D(_RaysTex, float2(angle, 0.0));
 			float hitDist = ray.r * 255.0 + ray.g;
-			c.a = length(centeredPos)*2.0 * _MaxRange <= min(_CurrentRange, hitDist) ? 1.0 : 0.0;
+			float r = length(centeredPos)*2.0 * _MaxRange;
+			c.a = r <= min(_CurrentRange, hitDist) ? ( r / _MaxRange > 0.9 ? (1.0 - r / _MaxRange) / 0.1 : 1.0) : 0.0;
 			c.rgb *= c.a;
 			return c;
 		}
