@@ -68,6 +68,8 @@ public class Player : MonoBehaviour
         rigidBody2D.velocity = direction * Speed;
 
         Animate(direction != Vector2.zero);
+
+	    transform.position = FollowingCamera.Instance.Clamp(transform.position, 1.0f, 1.0f);
     }
 
     void Animate(bool moving)
