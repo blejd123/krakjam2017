@@ -41,6 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Wave
+    uniqueID: 3471132047
+    locked: 0
   - name: Gameplay
     uniqueID: 4220399013
     locked: 0
