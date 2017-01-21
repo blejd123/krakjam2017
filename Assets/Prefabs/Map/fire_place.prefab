@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4890268799186248}
   - component: {fileID: 212662438174047164}
   - component: {fileID: 61692595814508478}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: fire_place
   m_TagString: Untagged
   m_Icon: {fileID: 0}

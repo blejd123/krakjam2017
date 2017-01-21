@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour {
 
-    Dictionary<Coord, Tile> map = new Dictionary<Coord, Tile>();
-
     public int VisibleTilesX;
     public int VisibleTilesY;
 
@@ -14,27 +12,8 @@ public class MapGenerator : MonoBehaviour {
 
     void Start()
     {
-        GenerateBase();
-    }
-
-    void Update()
-    {
-        var cameraPos = FollowingCamera.Instance.transform.position;
-        var center = Coord.PositionToCoord(cameraPos);
-
-        Generate(new Coord(center.x - VisibleTilesX / 2, center.y - VisibleTilesY / 2),
-            new Coord(center.x + VisibleTilesX / 2, center.y + VisibleTilesY / 2));
-    }
-
-    void GenerateBase()
-    {
-        for (int x = -1; x <= 1; x++)
-        {
-            for (int y = -1; y <= 1; y++)
-            {
-                map.Add(new Coord(x, y), new Tile(TileType.Empty));
-            }
-        }
+        Generate(new Coord(VisibleTilesX / 2, VisibleTilesY / 2),
+            new Coord(VisibleTilesX / 2, VisibleTilesY / 2));
     }
 
     void Generate(Coord min, Coord max)
@@ -50,15 +29,8 @@ public class MapGenerator : MonoBehaviour {
 
     void GenerateTile(Coord coord)
     {
-        Tile tile = null;
-        map.TryGetValue(coord, out tile);
-
-        if(tile == null)
-        {
-            bool empty = true;// Random.Range(0, 5) != 1;
-            tile = new Tile(empty ? TileType.Empty : TileType.Full);
-            map.Add(coord, tile);
-        }
+        bool empty = true;// Random.Range(0, 5) != 1;
+        Tile tile = new Tile(empty ? TileType.Empty : TileType.Full);
 
         if(!tile.instantiated)
         {
