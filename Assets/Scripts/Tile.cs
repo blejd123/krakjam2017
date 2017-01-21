@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-enum TileType
+public enum TileType
 {
     Empty,
     Full
 }
 
-class Tile
+public class Tile
 {
-
+    public bool instantiated = false;
     public TileType type;
 
     public Tile(TileType type)
