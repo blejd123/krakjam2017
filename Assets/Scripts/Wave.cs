@@ -58,6 +58,10 @@ public class Wave : MonoBehaviour
             const float easeDuration = 0.4f;
             _marker.transform.DOScale(1.0f / markerParentScale * 1.3f, easeDuration).SetEase(Ease.OutSine);
             _marker.GetComponent<SpriteRenderer>().DOColor(new Color(1, 1, 1, 0), easeDuration).SetEase(Ease.OutSine);
+
+            float fadeOutDuration = 0.3f;
+            float totalAnimTime = Range / Speed;
+            _spriteRenderer.DOColor(new Color(1, 1, 1, 0), fadeOutDuration).SetDelay(totalAnimTime - fadeOutDuration).SetEase(Ease.OutSine);
         }
 
         _spriteRenderer.enabled = true;
