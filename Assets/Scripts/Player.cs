@@ -2,13 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour {
-
+public class Player : MonoBehaviour
+{
     public static Player Instance;
 
     public float Speed;
 
     Rigidbody2D rigidBody2D;
+
+	public Vector2 Position
+	{
+		get
+		{
+			return transform.position;
+		} 
+	}
+
+	public void OnWaveCollision()
+	{
+		Debug.Log("OnWaveCollision");
+	}
 
     void Awake()
     {
