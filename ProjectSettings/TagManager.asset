@@ -47,3 +47,6 @@ TagManager:
   - name: Markers
     uniqueID: 1928020695
     locked: 0
+  - name: Crosshair
+    uniqueID: 1366541299
+    locked: 0
