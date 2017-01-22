@@ -39,8 +39,9 @@ public class Player : MonoBehaviour
 
     private Vector3 sideTorsoStartPos;
     private Vector3 sideHeadStartPos;
+	public SpriteRenderer _deathSpriteRenderer;
 
-    public Vector2 Position
+	public Vector2 Position
 	{
 		get
 		{
@@ -56,7 +57,14 @@ public class Player : MonoBehaviour
         rigidBody2D.velocity = Vector2.zero;
         GetComponent<AudioSource>().Play();
         GameState.Instance.state = GameState.State.GameOver;
-        Invoke("ShowShamanWin", 3.0f);
+
+		_deathSpriteRenderer.gameObject.SetActive(true);
+
+		Right.SetActive(false);
+		Up.SetActive(false);
+		Down.SetActive(false);
+
+		Invoke("ShowShamanWin", 3.0f);
     }
 
     void ShowShamanWin()
@@ -83,8 +91,11 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (GameState.Instance.state != GameState.State.Playing)
-            return;
+	    if (GameState.Instance.state != GameState.State.Playing)
+	    {
+			rigidBody2D.velocity = Vector2.zero;
+			return;
+		}
 
         Vector2 direction = Vector2.zero;
 
