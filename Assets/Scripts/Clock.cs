@@ -15,6 +15,9 @@ public class Clock : MonoBehaviour {
     private bool gameOver = false;
 
     void Update () {
+        if (GameState.Instance.state != GameState.State.Playing)
+            return;
+
         _timeToGameOver -= Time.deltaTime;
         float amount = Mathf.Max(_timeToGameOver, 0);
         foreground.fillAmount = amount / ROUND_TIME;

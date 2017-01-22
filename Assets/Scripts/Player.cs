@@ -50,7 +50,10 @@ public class Player : MonoBehaviour
 
 	public void OnWaveCollision()
 	{
-		Debug.Log("OnWaveCollision");
+        if (GameState.Instance.state != GameState.State.Playing)
+            return;
+        // TODO: casting player won
+        Debug.Log("OnWaveCollision");
 	}
 
     void Awake()
@@ -69,6 +72,9 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (GameState.Instance.state != GameState.State.Playing)
+            return;
+
         Vector2 direction = Vector2.zero;
 
         bool up = Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W);
