@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 212487375522393972}
   - component: {fileID: 60811207960077500}
   - component: {fileID: 114317247687817692}
+  - component: {fileID: 114400855182249492}
   m_Layer: 9
   m_Name: water_lake_3
   m_TagString: Untagged
@@ -113,7 +114,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1980450279650692}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.075495, y: -30.871296, z: 0}
+  m_LocalPosition: {x: -6.3716364, y: -40.46971, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4134420682035252}
@@ -203,6 +204,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IAmPivot: 0
   OtherPivot: {fileID: 0}
+--- !u!114 &114400855182249492
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1980450279650692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e212bc9006ee9fd42bd36726f9c36680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particles: {fileID: 1070578594476614}
 --- !u!198 &198442451005657724
 ParticleSystem:
   m_ObjectHideFlags: 1

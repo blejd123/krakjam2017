@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 212639125182201256}
   - component: {fileID: 60627084232123238}
   - component: {fileID: 114931477140574680}
+  - component: {fileID: 114095434398742996}
   m_Layer: 9
   m_Name: water_lake_2
   m_TagString: Untagged
@@ -126,7 +127,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1399968411619188}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.8029423, y: -30.761036, z: 0}
+  m_LocalPosition: {x: -14.534057, y: -41.05799, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4345744455579860}
@@ -190,6 +191,18 @@ PolygonCollider2D:
       - {x: 0, y: -0.875}
       - {x: 0.421875, y: -0.875}
       - {x: 0.46875, y: -0.890625}
+--- !u!114 &114095434398742996
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1399968411619188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e212bc9006ee9fd42bd36726f9c36680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particles: {fileID: 1935452510986868}
 --- !u!114 &114420703503980680
 MonoBehaviour:
   m_ObjectHideFlags: 1
