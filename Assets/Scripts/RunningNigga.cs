@@ -16,6 +16,7 @@ public class RunningNigga : MonoBehaviour {
     private Vector3 torsoStartPos;
     private Vector3 leftLegStartPos;
     private Vector3 rightLegStartPos;
+	public AudioSource _source;
 
     void Start()
     {
@@ -25,10 +26,7 @@ public class RunningNigga : MonoBehaviour {
         rightLegStartPos = rightLeg.transform.localPosition;
         transform.DOMoveY(-45, 2.0f).SetDelay(2).OnComplete(() =>
         {
-            if(AppFlow.Instance != null)
-            {
-                AppFlow.Instance.GoToIntro();
-            }
+            _source.Stop();
         });
     }
 
