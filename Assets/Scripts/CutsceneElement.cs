@@ -22,7 +22,9 @@ public class CutsceneElement
 
 	public IEnumerator Play()
 	{
+		_image.gameObject.SetActive(false);
 		yield return new WaitForSeconds(_delay);
+		_image.gameObject.SetActive(true);
 		_image.DOKill();
 		if (_fadeDuration > 0.0f)
 		{
@@ -32,7 +34,11 @@ public class CutsceneElement
 		
 		if (_endTransform != null)
 		{
-			_image.DOFade(0.0f, _fadeDuration).SetDelay(_duration - _fadeDuration);
+			if (_fadeDuration > 0.0f)
+			{
+				_image.DOFade(0.0f, _fadeDuration).SetDelay(_duration - _fadeDuration);
+			}
+			
 			RectTransform tr = _image.rectTransform;
 			tr.DOKill();
 			Sequence sequence = DOTween.Sequence();
@@ -42,7 +48,10 @@ public class CutsceneElement
 		}
 		else
 		{
-			yield return _image.DOFade(0.0f, _fadeDuration).SetDelay(_duration - _fadeDuration).WaitForCompletion();
+			if (_fadeDuration > 0.0f)
+			{
+				yield return _image.DOFade(0.0f, _fadeDuration).SetDelay(_duration - _fadeDuration).WaitForCompletion();
+			}
 		}
 	}
 
