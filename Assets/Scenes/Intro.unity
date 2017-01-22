@@ -666,7 +666,7 @@ MonoBehaviour:
   _elements:
   - Root: {fileID: 939233137}
     _delay: 0
-    _duration: 1
+    _duration: 4
     _moveDuration: 0
     _image: {fileID: 357208343}
     _imageGroup: {fileID: 939233139}
