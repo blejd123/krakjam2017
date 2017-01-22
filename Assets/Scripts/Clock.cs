@@ -37,8 +37,14 @@ public class Clock : MonoBehaviour {
         if(!gameOver && _timeToGameOver <= 0)
         {
             gameOver = true;
-            // TODO: walking player won
             transform.DOShakePosition(3.0f, 5.0f, 20);
+            GameState.Instance.state = GameState.State.GameOver;
+            Invoke("ShowShamanLose", 3.0f);
         }
+    }
+
+    void ShowShamanLose()
+    {
+        Debug.Log("Show SZAMAN LOSE");
     }
 }

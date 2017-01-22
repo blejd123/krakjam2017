@@ -52,9 +52,15 @@ public class Player : MonoBehaviour
 	{
         if (GameState.Instance.state != GameState.State.Playing)
             return;
-        // TODO: casting player won
-        Debug.Log("OnWaveCollision");
-	}
+
+        GameState.Instance.state = GameState.State.GameOver;
+        Invoke("ShowShamanWin", 3.0f);
+    }
+
+    void ShowShamanWin()
+    {
+        Debug.Log("Show SZAMAN WIN");
+    }
 
     void Awake()
     {
