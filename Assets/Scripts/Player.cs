@@ -128,7 +128,7 @@ public class Player : MonoBehaviour
         foreach (var torso in torsos)
             torso.transform.localPosition = torsoStartPos + torsoPosDiff;
 
-        //sideTorso.transform.localPosition = sideTorsoStartPos + torsoPosDiff;
+        sideTorso.transform.localPosition = sideTorsoStartPos + torsoPosDiff;
 
         float sideLegAngle = Mathf.Sin(Time.time * 12) * 35;
         sideFrontLeg.transform.localRotation = Quaternion.Euler(0, 0, -sideLegAngle);
