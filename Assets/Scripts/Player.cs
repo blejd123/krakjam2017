@@ -51,6 +51,10 @@ public class Player : MonoBehaviour
 	public void OnWaveCollision()
 	{
 		Debug.Log("OnWaveCollision");
+		if (AppFlow.Instance != null)
+		{
+			AppFlow.Instance.GoToGameOverShamanWin();
+		}
 	}
 
     void Awake()

@@ -16,7 +16,8 @@ public class AppFlow : MonoBehaviour
 	[SerializeField] private string _introScene;
 	[SerializeField] private string _mainMenuScene;
 	[SerializeField] private string _gameplayScene;
-	[SerializeField] private string _gameOverScene;
+	[SerializeField] private string _gameOverShamanWinScene;
+	[SerializeField] private string _gameOverShamanLoseScene;
 
 
 	void Awake()
@@ -45,11 +46,16 @@ public class AppFlow : MonoBehaviour
 		LoadScene(_gameplayScene);
 	}
 
-	public void GoToGameOver()
+	public void GoToGameOverShamanWin()
 	{
-		LoadScene(_gameOverScene);
+		LoadScene(_gameOverShamanWinScene);
 	}
-	
+
+	public void GoToGameOverShamanLose()
+	{
+		LoadScene(_gameOverShamanLoseScene);
+	}
+
 	public void LoadScene(string scene)
 	{
 		FadeIn(() =>
