@@ -19,8 +19,12 @@ public class MapGenerator : MonoBehaviour {
 
     void Update()
     {
-        var cameraPos = FollowingCamera.Instance.transform.position;
-        var center = Coord.PositionToCoord(cameraPos);
+        var center = new Coord(0, 0);
+        if (FollowingCamera.Instance != null)
+        {
+            var cameraPos = FollowingCamera.Instance.transform.position;
+            center = Coord.PositionToCoord(cameraPos);
+        }
 
         Generate(new Coord(center.x - VisibleTilesX / 2, center.y - VisibleTilesY / 2),
             new Coord(center.x + VisibleTilesX / 2, center.y + VisibleTilesY / 2));

@@ -15,6 +15,9 @@ public class Clock : MonoBehaviour {
     private bool gameOver = false;
 
     void Update () {
+        if (GameState.Instance.state != GameState.State.Playing)
+            return;
+
         _timeToGameOver -= Time.deltaTime;
         float amount = Mathf.Max(_timeToGameOver, 0);
         foreground.fillAmount = amount / ROUND_TIME;
@@ -34,8 +37,17 @@ public class Clock : MonoBehaviour {
         if(!gameOver && _timeToGameOver <= 0)
         {
             gameOver = true;
-            // TODO: walking player won
             transform.DOShakePosition(3.0f, 5.0f, 20);
+            GameState.Instance.state = GameState.State.GameOver;
+            Invoke("ShowShamanLose", 3.0f);
+        }
+    }
+
+    void ShowShamanLose()
+    {
+        if (AppFlow.Instance != null)
+        {
+            AppFlow.Instance.GoToGameOverShamanLose();
         }
     }
 }

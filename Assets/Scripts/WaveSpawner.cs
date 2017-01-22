@@ -16,7 +16,10 @@ public class WaveSpawner : MonoBehaviour
 
 	public void Update()
 	{
-		if (Input.GetMouseButtonDown(0))
+        if (GameState.Instance.state != GameState.State.Playing)
+            return;
+
+        if (Input.GetMouseButtonDown(0))
 		{
             Crosshair.Instance.OnWaveSpawn();
 

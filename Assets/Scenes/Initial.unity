@@ -122,7 +122,8 @@ MonoBehaviour:
   _introScene: Intro
   _mainMenuScene: MainMenu
   _gameplayScene: Main
-  _gameOverScene: GameOver
+  _gameOverShamanWinScene: ShamanWin
+  _gameOverShamanLoseScene: ShamanLose
 --- !u!4 &121850121
 Transform:
   m_ObjectHideFlags: 0
