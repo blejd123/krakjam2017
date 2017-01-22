@@ -53,6 +53,7 @@ public class Player : MonoBehaviour
         if (GameState.Instance.state != GameState.State.Playing)
             return;
 
+        GetComponent<AudioSource>().Play();
         GameState.Instance.state = GameState.State.GameOver;
         Invoke("ShowShamanWin", 3.0f);
     }

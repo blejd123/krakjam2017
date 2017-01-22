@@ -8,6 +8,9 @@ public class Wave : MonoBehaviour
 	[SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private GameObject _marker;
 
+    public AudioSource placeAudioSource;
+    public AudioSource explodeAudioSource;
+
 	public Vector2 Origin;
 	public float Range;
 	public float Speed;
@@ -20,6 +23,11 @@ public class Wave : MonoBehaviour
 
 	public void Start()
 	{
+        placeAudioSource.pitch = 1.0f + Random.Range(-0.2f, 0.2f);
+        explodeAudioSource.pitch = 1.0f + Random.Range(-0.2f, 0.2f);
+
+        placeAudioSource.Play();
+
         maxTimeToStart = TimeToStart;
 
         _spriteRenderer.enabled = false;
@@ -54,6 +62,7 @@ public class Wave : MonoBehaviour
             return;
         } else if(!_detonated)
         {
+            explodeAudioSource.Play();
             _detonated = true;
             const float easeDuration = 0.4f;
             _marker.transform.DOScale(1.0f / markerParentScale * 1.3f, easeDuration).SetEase(Ease.OutSine);
