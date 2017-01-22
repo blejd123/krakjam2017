@@ -15,3 +15,17 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
   - enabled: 1
     path: Assets/Scenes/Main.unity
+  - enabled: 1
+    path: Assets/Scenes/Gameplay.unity
+  - enabled: 1
+    path: Assets/Scenes/MapElements.unity
+  - enabled: 1
+    path: Assets/Scenes/MapGeneration.unity
+  - enabled: 1
+    path: Assets/Scenes/PlayerAnimations.unity
+  - enabled: 1
+    path: Assets/Scenes/ShamanLose.unity
+  - enabled: 1
+    path: Assets/Scenes/ShamanWin.unity
+  - enabled: 1
+    path: Assets/Scenes/WaveTest.unity
