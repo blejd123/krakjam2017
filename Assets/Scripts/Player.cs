@@ -71,10 +71,10 @@ public class Player : MonoBehaviour
     {
         Vector2 direction = Vector2.zero;
 
-        bool up = Input.GetKey(KeyCode.UpArrow);
-        bool down = Input.GetKey(KeyCode.DownArrow);
-        bool left = Input.GetKey(KeyCode.LeftArrow);
-        bool right = Input.GetKey(KeyCode.RightArrow);
+        bool up = Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W);
+        bool down = Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
+        bool left = Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A);
+        bool right = Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D);
 
         if (up)
             direction += new Vector2(0, 1);
