@@ -50,12 +50,20 @@ public class Player : MonoBehaviour
 
 	public void OnWaveCollision()
 	{
-		Debug.Log("OnWaveCollision");
-		if (AppFlow.Instance != null)
-		{
-			AppFlow.Instance.GoToGameOverShamanWin();
-		}
-	}
+        if (GameState.Instance.state != GameState.State.Playing)
+            return;
+
+        GameState.Instance.state = GameState.State.GameOver;
+        Invoke("ShowShamanWin", 3.0f);
+    }
+
+    void ShowShamanWin()
+    {
+        if (AppFlow.Instance != null)
+        {
+            AppFlow.Instance.GoToGameOverShamanWin();
+        }
+    }
 
     void Awake()
     {
@@ -73,6 +81,9 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (GameState.Instance.state != GameState.State.Playing)
+            return;
+
         Vector2 direction = Vector2.zero;
 
         bool up = Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W);
