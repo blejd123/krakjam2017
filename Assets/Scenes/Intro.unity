@@ -757,7 +757,7 @@ MonoBehaviour:
   - Root: {fileID: 484745368}
     _delay: 0
     _duration: 4
-    _moveDuration: 0
+    _moveDuration: 4
     _image: {fileID: 879398353}
     _imageGroup: {fileID: 484745370}
     _endTransform: {fileID: 1868318515}
