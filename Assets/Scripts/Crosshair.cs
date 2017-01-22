@@ -22,6 +22,11 @@ public class Crosshair : MonoBehaviour {
         Cursor.visible = false;
     }
 
+    void OnDestroy()
+    {
+        Cursor.visible = true;
+    }
+
     public void OnWaveSpawn()
     {
         transform.localScale = Vector3.one;
