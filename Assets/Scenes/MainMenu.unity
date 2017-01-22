@@ -399,8 +399,10 @@ MonoBehaviour:
   _elements:
   - Root: {fileID: 1200149076}
     _delay: 0
-    _duration: 4
+    _duration: 1
+    _moveDuration: 0
     _image: {fileID: 1150374172}
+    _imageGroup: {fileID: 1150374173}
     _endTransform: {fileID: 231526555}
     _onComplete:
       m_PersistentCalls:
@@ -502,6 +504,7 @@ GameObject:
   - component: {fileID: 1150374170}
   - component: {fileID: 1150374171}
   - component: {fileID: 1150374172}
+  - component: {fileID: 1150374173}
   m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
@@ -560,6 +563,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!225 &1150374173
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1150374169}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1200149076
 GameObject:
   m_ObjectHideFlags: 0
