@@ -681,7 +681,7 @@ MonoBehaviour:
     _soundDelay: 0
   - Root: {fileID: 1880175374}
     _delay: 0
-    _duration: 1
+    _duration: 4
     _moveDuration: 0
     _image: {fileID: 1966366305}
     _imageGroup: {fileID: 1880175376}
@@ -696,7 +696,7 @@ MonoBehaviour:
     _soundDelay: 0
   - Root: {fileID: 35794803}
     _delay: 0
-    _duration: 1
+    _duration: 4
     _moveDuration: 2
     _image: {fileID: 1668365968}
     _imageGroup: {fileID: 35794805}
