@@ -46,6 +46,8 @@ public class Wave : MonoBehaviour
 		_spriteRenderer.material.SetFloat("_MaxRange", Range);
 
         _marker.transform.localScale = Vector3.zero;
+        _marker.transform.localRotation = Quaternion.Euler(0, 0, Random.Range(-20.0f, 20.0f));
+        _marker.GetComponent<SpriteRenderer>().flipX = Random.Range(0, 2) == 0;
     }
 
 	public void Update()
