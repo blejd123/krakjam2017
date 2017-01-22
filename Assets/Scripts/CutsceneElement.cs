@@ -46,7 +46,8 @@ public class CutsceneElement
 			Sequence sequence = DOTween.Sequence();
 			sequence.Append(tr.DOLocalMove(_endTransform.localPosition, _moveDuration));
 			sequence.Join(tr.DOScale(_endTransform.localScale, _moveDuration));
-			sequence.Join(tr.DOLocalRotate(_endTransform.localRotation.eulerAngles, _moveDuration)).WaitForCompletion();
+			sequence.Join(tr.DOLocalRotate(_endTransform.localRotation.eulerAngles, _moveDuration));
+			yield return DOTween.To(() => 0.0f, value => { }, 1.0f, _duration).WaitForCompletion();
 		}
 		else
 		{
