@@ -13,7 +13,9 @@ public class CutsceneElement
 
 	[SerializeField] private float _delay;
 	[SerializeField] private float _duration;
+	[SerializeField] private float _moveDuration;
 	[SerializeField] private Image _image;
+	[SerializeField] private CanvasGroup _imageGroup;
 	[SerializeField] private RectTransform _endTransform;
 	[SerializeField] private UnityEvent _onComplete;
 	[SerializeField] private float _fadeDuration;
@@ -28,29 +30,29 @@ public class CutsceneElement
 		_image.DOKill();
 		if (_fadeDuration > 0.0f)
 		{
-			_image.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-			_image.DOFade(1.0f, _fadeDuration);			
+			_imageGroup.alpha = 0.0f;
+			_imageGroup.DOFade(1.0f, _fadeDuration);			
 		}
 		
 		if (_endTransform != null)
 		{
 			if (_fadeDuration > 0.0f)
 			{
-				_image.DOFade(0.0f, _fadeDuration).SetDelay(_duration - _fadeDuration);
+				_imageGroup.DOFade(0.0f, _fadeDuration).SetDelay(_duration - _fadeDuration);
 			}
 			
 			RectTransform tr = _image.rectTransform;
 			tr.DOKill();
 			Sequence sequence = DOTween.Sequence();
-			sequence.Append(tr.DOMove(_endTransform.position, _duration));
-			sequence.Join(tr.DOScale(_endTransform.lossyScale, _duration));
-			yield return sequence.Join(tr.DORotate(_endTransform.rotation.eulerAngles, _duration)).WaitForCompletion();
+			sequence.Append(tr.DOLocalMove(_endTransform.localPosition, _moveDuration));
+			sequence.Join(tr.DOScale(_endTransform.localScale, _moveDuration));
+			sequence.Join(tr.DOLocalRotate(_endTransform.localRotation.eulerAngles, _moveDuration)).WaitForCompletion();
 		}
 		else
 		{
 			if (_fadeDuration > 0.0f)
 			{
-				yield return _image.DOFade(0.0f, _fadeDuration).SetDelay(_duration - _fadeDuration).WaitForCompletion();
+				yield return _imageGroup.DOFade(0.0f, _fadeDuration).SetDelay(_duration - _fadeDuration).WaitForCompletion();
 			}
 		}
 	}

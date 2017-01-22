@@ -59,7 +59,10 @@ public class Player : MonoBehaviour
 
     void ShowShamanWin()
     {
-        Debug.Log("Show SZAMAN WIN");
+        if (AppFlow.Instance != null)
+        {
+            AppFlow.Instance.GoToGameOverShamanWin();
+        }
     }
 
     void Awake()

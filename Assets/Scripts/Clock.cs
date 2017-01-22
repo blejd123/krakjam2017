@@ -45,6 +45,9 @@ public class Clock : MonoBehaviour {
 
     void ShowShamanLose()
     {
-        Debug.Log("Show SZAMAN LOSE");
+        if (AppFlow.Instance != null)
+        {
+            AppFlow.Instance.GoToGameOverShamanLose();
+        }
     }
 }
