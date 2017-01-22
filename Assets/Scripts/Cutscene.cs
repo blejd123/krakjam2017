@@ -26,6 +26,14 @@ public class Cutscene : MonoBehaviour
 		StartCoroutine(PlayCoroutine());
 	}
 
+	public void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape))
+		{
+			AppFlow.Instance.LoadScene(_onCompleteScene);
+		}
+	}
+
 	private IEnumerator PlayCoroutine()
 	{
 		foreach (CutsceneElement cutsceneElement in _elements)
