@@ -393,7 +393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5113f1094f8aff746b752ced90c09771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _onCompleteScene: Gameplay
+  _onCompleteScene: Main
   _playOnStart: 0
   _audioSource: {fileID: 788327709}
   _elements:
